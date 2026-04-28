@@ -1,0 +1,531 @@
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+:root{
+  --gold:#D4A017;
+  --gold-l:#FFD700;
+  --gold-p:#FFF0A0;
+  --maroon:#6B0000;
+  --saffron:#FF6B00;
+  --cream:#FFF8E7;
+  --parch:#F5DEB3;
+  --dark:#0d0200;
+}
+
+body{
+  background:var(--dark);
+  font-family:'Noto Serif Telugu',serif;
+  color:var(--cream);
+  overflow-x:hidden;
+}
+
+/* ─── FIXED BG ─── */
+.bg-fixed{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 30% 20%,rgba(212,160,23,.12) 0%,transparent 55%),
+    radial-gradient(ellipse at 70% 80%,rgba(139,0,0,.2) 0%,transparent 55%),
+    #0d0200;
+}
+#pts{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.pt{position:absolute;border-radius:50%;background:var(--gold-l);
+     animation:tw var(--d,3s) ease-in-out infinite var(--dl,0s);opacity:0;}
+@keyframes tw{0%,100%{opacity:0;transform:scale(.4);}50%{opacity:.85;transform:scale(1.8);}}
+
+.page{position:relative;z-index:1;}
+
+/* ─────────────────────────────
+   LIVE CLOCK (fixed left)
+───────────────────────────── */
+.live-clock{
+  position:fixed;
+  left:0; top:50%;
+  transform:translateY(-50%);
+  z-index:999;
+  writing-mode:vertical-rl;
+  text-orientation:mixed;
+  background:linear-gradient(180deg,#4a0000,#2a0000);
+  border:1px solid rgba(212,160,23,.5);
+  border-left:none;
+  border-radius:0 12px 12px 0;
+  padding:16px 10px;
+  text-align:center;
+  box-shadow:4px 0 24px rgba(0,0,0,.5);
+}
+.clock-time{
+  font-size:1.25rem;font-weight:700;
+  color:var(--gold-l);
+  text-shadow:0 0 10px rgba(255,215,0,.6);
+  letter-spacing:.05em;
+  font-family:'Noto Sans Telugu',sans-serif;
+}
+.clock-date{
+  font-size:.72rem;
+  color:var(--parch);
+  opacity:.85;
+  margin-top:6px;
+  font-family:'Noto Sans Telugu',sans-serif;
+}
+.clock-day{
+  font-size:.8rem;font-weight:700;
+  color:var(--saffron);
+  margin-top:4px;
+  font-family:'Noto Sans Telugu',sans-serif;
+}
+
+/* ─────────────────────────────
+   SCROLLING TICKER (top)
+───────────────────────────── */
+.ticker-bar{
+  background:linear-gradient(90deg,#3a0000,#5c0000,#3a0000);
+  border-bottom:2px solid var(--gold);
+  padding:9px 0;
+  overflow:hidden;
+  position:relative;
+}
+.ticker-track{
+  display:flex;
+  width:max-content;
+  animation:scroll-left 28s linear infinite;
+  white-space:nowrap;
+}
+@keyframes scroll-left{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-50%);}
+}
+.ticker-item{
+  font-size:clamp(.82rem,2.5vw,.98rem);
+  font-family:'Noto Sans Telugu',sans-serif;
+  color:var(--gold-l);
+  padding:0 40px;
+}
+.ticker-item span{color:#FF9966;font-weight:700;}
+.ticker-sep{color:var(--gold);padding:0 8px;}
+
+/* ─────────────────────────────
+   HEADER
+───────────────────────────── */
+.site-header{
+  text-align:center;
+  padding:40px 20px 32px;
+  background:linear-gradient(180deg,#2a0800 0%,#1a0400 100%);
+  border-bottom:3px solid var(--gold);
+  position:relative;overflow:hidden;
+}
+.site-header::after{
+  content:'';position:absolute;inset:0;
+  background:
+    repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(212,160,23,.03) 40px,rgba(212,160,23,.03) 42px);
+  pointer-events:none;
+}
+
+.om-glow{
+  display:block;
+  font-size:clamp(3rem,10vw,5.5rem);
+  color:var(--gold-l);
+  text-shadow:0 0 30px rgba(255,215,0,.9),0 0 80px rgba(255,165,0,.5);
+  animation:om-p 3s ease-in-out infinite;
+  margin-bottom:4px;
+}
+@keyframes om-p{
+  0%,100%{text-shadow:0 0 20px rgba(255,215,0,.8),0 0 60px rgba(255,165,0,.4);}
+  50%{text-shadow:0 0 60px rgba(255,215,0,1),0 0 140px rgba(255,165,0,.9),0 0 220px rgba(255,80,0,.3);}
+}
+
+.sri-tag{
+  font-size:clamp(1rem,3.5vw,1.6rem);
+  font-weight:700;color:var(--gold);
+  letter-spacing:.1em;margin-bottom:4px;
+}
+.main-h{
+  font-size:clamp(2rem,8vw,4.5rem);
+  font-weight:900;line-height:1.2;
+  background:linear-gradient(135deg,#FFE566 0%,#FFA500 35%,#FFD700 65%,#FF8C00 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 3px 10px rgba(212,160,23,.7));
+  margin-bottom:6px;
+}
+.dev-name{
+  font-size:clamp(.95rem,3.2vw,1.4rem);
+  font-weight:700;color:#FFD0A0;margin-bottom:4px;
+}
+.loc-tag{
+  font-size:clamp(.78rem,2.3vw,.95rem);
+  color:rgba(255,220,150,.7);margin-bottom:20px;
+  font-family:'Noto Sans Telugu',sans-serif;
+}
+
+.diya-row{display:flex;justify-content:center;gap:14px;font-size:1.7rem;}
+.dy{animation:flk 1.8s ease-in-out infinite;}
+.dy:nth-child(2){animation-delay:.35s;}
+.dy:nth-child(3){animation-delay:.7s;}
+.dy:nth-child(4){animation-delay:1.05s;}
+.dy:nth-child(5){animation-delay:1.4s;}
+@keyframes flk{
+  0%,100%{opacity:1;transform:scale(1) rotate(0deg);}
+  30%{opacity:.8;transform:scale(1.1) rotate(-3deg);}
+  70%{opacity:.9;transform:scale(.95) rotate(2deg);}
+}
+
+/* ─────────────────────────────
+   GODDESS IMAGE
+───────────────────────────── */
+.goddess-sec{
+  display:flex;justify-content:center;align-items:center;
+  padding:40px 20px 50px;
+  background:linear-gradient(180deg,#1a0400 0%,#110300 100%);
+  position:relative;overflow:hidden;
+}
+
+/* decorative petals bg */
+.goddess-sec::before{
+  content:'🌸🌺🌸🌼🌺🌸🌼🌸🌺🌸🌼🌺🌸🌸🌺🌼🌸🌺🌸🌼';
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  flex-wrap:wrap;font-size:2rem;opacity:.07;
+  letter-spacing:8px;line-height:2.2;
+  pointer-events:none;
+  filter:blur(1px);
+}
+
+.g-frame{position:relative;display:inline-block;}
+
+.g-ring-outer{
+  position:absolute;inset:-28px;border-radius:50%;
+  background:conic-gradient(from 0deg,#FFD700,#FF8C00,#FFD700,#FF6B00,#FFD700,#FF8C00,#FFD700);
+  animation:spin 10s linear infinite;
+  opacity:.5;filter:blur(8px);z-index:0;
+}
+.g-ring-inner{
+  position:absolute;inset:-14px;border-radius:50%;
+  background:conic-gradient(from 180deg,transparent,rgba(255,215,0,.6),transparent,rgba(255,140,0,.4),transparent);
+  animation:spin 6s linear infinite reverse;
+  z-index:0;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+.g-img-wrap{
+  position:relative;z-index:1;
+  border-radius:50%;overflow:hidden;
+  width:clamp(200px,55vw,340px);
+  height:clamp(200px,55vw,340px);
+  border:5px solid var(--gold);
+  box-shadow:0 0 50px rgba(255,215,0,.7),0 0 120px rgba(255,107,0,.3),inset 0 0 40px rgba(0,0,0,.5);
+}
+.g-img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:brightness(1.06) saturate(1.1);}
+
+.g-caption{
+  text-align:center;margin-top:24px;
+  font-size:clamp(1.1rem,4vw,1.6rem);
+  font-weight:900;color:var(--gold-l);
+  text-shadow:0 0 20px rgba(255,215,0,.8);
+  animation:om-p 2.5s ease-in-out infinite;
+}
+
+/* ─────────────────────────────
+   DECORATIVE DIVIDER BAND
+───────────────────────────── */
+.deco-band{
+  background:linear-gradient(90deg,#2a0000,#5a0000,#2a0000);
+  border-top:2px solid rgba(212,160,23,.4);
+  border-bottom:2px solid rgba(212,160,23,.4);
+  padding:20px 0;
+  text-align:center;
+  overflow:hidden;
+  position:relative;
+}
+.deco-band::before{
+  content:'';
+  position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,transparent,transparent 20px,rgba(212,160,23,.04) 20px,rgba(212,160,23,.04) 21px);
+}
+.deco-icons{
+  font-size:clamp(1.6rem,5vw,2.4rem);
+  letter-spacing:clamp(8px,3vw,24px);
+  animation:sway 4s ease-in-out infinite;
+  display:inline-block;
+  position:relative;z-index:1;
+}
+@keyframes sway{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.05);}
+}
+
+/* ─────────────────────────────
+   MANDALA DESIGN SECTION
+───────────────────────────── */
+.mandala-sec{
+  background:linear-gradient(180deg,#110300 0%,#1a0500 100%);
+  padding:40px 16px;
+  position:relative;overflow:hidden;
+}
+
+.mandala-grid{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:20px;
+  max-width:860px;margin:0 auto;
+}
+
+.mandala-side{
+  display:flex;flex-direction:column;gap:16px;
+}
+
+.devo-card{
+  background:linear-gradient(145deg,rgba(80,15,0,.8),rgba(40,5,0,.9));
+  border:1.5px solid rgba(212,160,23,.35);
+  border-radius:14px;
+  padding:18px 16px;
+  text-align:center;
+  position:relative;overflow:hidden;
+  transition:all .4s;
+}
+.devo-card:hover{
+  border-color:var(--gold);
+  transform:scale(1.03);
+  box-shadow:0 0 24px rgba(212,160,23,.2);
+}
+.devo-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold-l),transparent);
+}
+.devo-emoji{font-size:2.2rem;margin-bottom:8px;display:block;}
+.devo-text{
+  font-size:clamp(.85rem,2.5vw,1rem);
+  color:var(--parch);opacity:.9;
+  font-family:'Noto Sans Telugu',sans-serif;
+  line-height:1.75;
+}
+.devo-label{
+  font-size:clamp(.9rem,2.8vw,1.1rem);
+  font-weight:700;color:var(--gold-l);
+  margin-bottom:6px;
+  text-shadow:0 0 8px rgba(255,215,0,.4);
+}
+
+/* center mandala */
+.mandala-center{
+  width:clamp(140px,30vw,200px);
+  height:clamp(140px,30vw,200px);
+  position:relative;flex-shrink:0;
+}
+.mandala-svg{width:100%;height:100%;animation:spin 20s linear infinite;}
+
+@media(max-width:640px){
+  .mandala-grid{grid-template-columns:1fr;grid-template-rows:auto auto auto;}
+  .mandala-center{margin:0 auto;}
+}
+
+/* ─────────────────────────────
+   LOTUS ROW
+───────────────────────────── */
+.lotus-row{
+  display:flex;justify-content:center;gap:clamp(8px,3vw,24px);
+  padding:24px 0;
+  font-size:clamp(1.4rem,5vw,2rem);
+  position:relative;
+}
+.lotus-item{
+  animation:float var(--ft,3s) ease-in-out infinite var(--fdl,0s);
+  display:inline-block;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-8px);}
+}
+
+/* ─────────────────────────────
+   SCHEDULE
+───────────────────────────── */
+.schedule-sec{
+  background:linear-gradient(180deg,#1a0500 0%,#0d0200 100%);
+  padding:36px 16px 40px;
+}
+
+.sec-head{
+  text-align:center;
+  font-size:clamp(1.4rem,5.5vw,2.2rem);
+  font-weight:900;
+  color:var(--gold-l);
+  text-shadow:0 0 20px rgba(255,215,0,.5);
+  margin-bottom:28px;
+}
+
+.sched-wrap{
+  max-width:720px;margin:0 auto;
+  display:flex;flex-direction:column;gap:12px;
+}
+
+.sr{
+  display:grid;
+  grid-template-columns:140px 1fr 1fr;
+  align-items:center;gap:10px;
+  padding:15px 22px;border-radius:12px;
+  background:rgba(0,0,0,.35);
+  border:1.5px solid rgba(212,160,23,.22);
+  transition:all .3s;
+}
+.sr:hover{border-color:var(--gold);background:rgba(212,160,23,.08);transform:translateX(6px);}
+.sr.main{
+  background:linear-gradient(135deg,rgba(120,0,0,.7),rgba(160,20,20,.5));
+  border:2px solid var(--gold-l);
+  box-shadow:0 0 30px rgba(255,215,0,.25);
+  animation:m-glow 2.5s ease-in-out infinite;
+}
+@keyframes m-glow{
+  0%,100%{box-shadow:0 0 24px rgba(255,215,0,.2);}
+  50%{box-shadow:0 0 50px rgba(255,215,0,.5),0 0 100px rgba(255,107,0,.25);}
+}
+.sd{font-size:clamp(.8rem,2.4vw,.98rem);font-weight:600;color:#FFD080;font-family:'Noto Sans Telugu',sans-serif;}
+.sw{font-size:clamp(.8rem,2.4vw,.95rem);color:var(--parch);}
+.se{font-size:clamp(.85rem,2.6vw,1rem);font-weight:700;color:#FF9966;text-align:right;}
+.sr.main .sd,.sr.main .sw,.sr.main .se{color:var(--gold-l);}
+
+.badge{
+  display:inline-block;
+  background:linear-gradient(135deg,#FFD700,#FF8C00);
+  color:#3B1A00;font-size:.62rem;font-weight:700;
+  padding:2px 8px;border-radius:20px;margin-left:6px;vertical-align:middle;
+}
+
+/* invite */
+.invite-box{
+  max-width:680px;margin:28px auto 0;text-align:center;
+  padding:20px 24px;
+  background:rgba(212,160,23,.07);
+  border:1px solid rgba(212,160,23,.3);border-radius:14px;
+  font-size:clamp(.9rem,3vw,1.1rem);
+  color:var(--parch);line-height:2;
+  font-family:'Noto Sans Telugu',sans-serif;
+}
+.invite-box strong{color:var(--gold-l);}
+
+/* ─────────────────────────────
+   KOLAM / RANGOLI DECO SECTION
+───────────────────────────── */
+.rangoli-sec{
+  background:linear-gradient(180deg,#0d0200 0%,#1a0500 50%,#0d0200 100%);
+  padding:36px 16px;
+  position:relative;overflow:hidden;
+}
+.rangoli-sec::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 25% 50%,rgba(255,107,0,.08) 0%,transparent 40%),
+    radial-gradient(circle at 75% 50%,rgba(212,160,23,.08) 0%,transparent 40%);
+}
+
+.blessing-banner{
+  max-width:760px;margin:0 auto;
+  background:linear-gradient(135deg,rgba(80,20,0,.8),rgba(100,10,10,.8));
+  border:2px solid rgba(212,160,23,.5);
+  border-radius:20px;padding:28px 24px;
+  text-align:center;position:relative;overflow:hidden;
+}
+.blessing-banner::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,#FFD700,#FF8C00,#FFD700,transparent);
+}
+.blessing-banner::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,#FFD700,#FF8C00,#FFD700,transparent);
+}
+
+.blessing-text{
+  font-size:clamp(1.1rem,4vw,1.8rem);
+  font-weight:700;
+  color:var(--gold-l);
+  text-shadow:0 0 14px rgba(255,215,0,.5);
+  line-height:1.9;margin-bottom:12px;
+}
+.blessing-sub{
+  font-size:clamp(.85rem,2.8vw,1.05rem);
+  color:var(--parch);opacity:.85;
+  font-family:'Noto Sans Telugu',sans-serif;
+  line-height:1.8;
+}
+
+/* ─────────────────────────────
+   FOOTER
+───────────────────────────── */
+.site-footer{
+  background:linear-gradient(180deg,#2a0800,#1a0400,#0d0200);
+  border-top:3px solid var(--gold);
+  padding:40px 16px 30px;
+  position:relative;overflow:hidden;
+}
+.site-footer::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    -45deg,transparent,transparent 30px,
+    rgba(212,160,23,.03) 30px,rgba(212,160,23,.03) 31px);
+  pointer-events:none;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:24px;max-width:860px;margin:0 auto 28px;
+}
+@media(max-width:580px){
+  .footer-grid{grid-template-columns:1fr;}
+}
+
+.footer-col{text-align:center;position:relative;z-index:1;}
+
+.footer-label{
+  font-size:.78rem;color:rgba(255,215,0,.6);
+  text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;
+}
+.footer-val{
+  font-size:clamp(.85rem,2.5vw,1rem);
+  font-weight:600;color:var(--parch);
+  line-height:1.7;
+  font-family:'Noto Sans Telugu',sans-serif;
+}
+.footer-val a{
+  color:var(--gold-l);text-decoration:none;
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 18px;margin-top:8px;
+  background:linear-gradient(135deg,#FF6B00,#CC3300);
+  border-radius:50px;border:1px solid rgba(255,215,0,.3);
+  font-weight:700;transition:all .3s;
+  font-family:'Noto Serif Telugu',serif;
+}
+.footer-val a:hover{
+  transform:translateY(-3px);
+  box-shadow:0 6px 24px rgba(255,107,0,.5);
+  border-color:var(--gold-l);
+}
+
+.footer-div{
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  margin:0 auto 20px;max-width:600px;
+}
+
+.footer-bottom{
+  text-align:center;
+  font-size:clamp(.85rem,2.5vw,1.1rem);
+  font-weight:700;color:var(--gold-l);
+  text-shadow:0 0 12px rgba(255,215,0,.5);
+  position:relative;z-index:1;
+}
+.footer-copy{
+  font-size:.75rem;color:rgba(255,220,150,.4);
+  margin-top:8px;
+  font-family:'Noto Sans Telugu',sans-serif;
+}
+
+/* gold divider util */
+.gd{display:flex;align-items:center;gap:12px;margin:16px 0;}
+.gl{flex:1;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.gi{color:var(--gold-l);font-size:1.1rem;}
+
+@media(max-width:480px){
+  .sr{grid-template-columns:100px 1fr;grid-template-rows:auto auto;}
+  .se{grid-column:2;text-align:left;}
+  .live-clock{display:none;}
+}
