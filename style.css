@@ -38,7 +38,7 @@ body{
 /* ─────────────────────────────
    LIVE CLOCK (fixed left)
 ───────────────────────────── */
-.live-clock{
+/*.live-clock{
   position:fixed;
   left:0; top:50%;
   transform:translateY(-50%);
@@ -52,6 +52,16 @@ body{
   padding:16px 10px;
   text-align:center;
   box-shadow:4px 0 24px rgba(0,0,0,.5);
+}*/
+
+.live-clock{
+  display:block;
+  position:static;
+  transform:none;
+  writing-mode:horizontal-tb;
+  border-radius:10px;
+  margin:10px auto;
+  width:fit-content;
 }
 .clock-time{
   font-size:1.25rem;font-weight:700;
@@ -581,6 +591,21 @@ body{
   .schedule-sec,
   .rangoli-sec {
     padding: 20px 10px !important;
+  }
+
+}
+@media(max-width:480px){
+
+  .live-clock{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    position:static;
+    writing-mode:horizontal-tb;
+    transform:none;
+    width:100%;
+    border-radius:0;
+    padding:10px;
   }
 
 }
