@@ -519,6 +519,65 @@ body{
   font-family:'Noto Sans Telugu',sans-serif;
 }
 
+
+
+/* MOBILE FINAL FIX */
+@media (max-width: 768px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .page {
+    padding: 0 10px;
+  }
+
+  /* Fix header spacing */
+  .site-header {
+    padding: 20px 10px;
+  }
+
+  /* Goddess image resize */
+  .g-img-wrap {
+    width: 220px;
+    height: 220px;
+  }
+
+  /* Mandala layout fix */
+  .mandala-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Schedule fix */
+  .sr {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  .se {
+    text-align: left;
+  }
+
+  /* Footer fix */
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Hide side clock (already partly done but ensure) */
+  .live-clock {
+    display: none;
+  }
+
+  /* Reduce padding everywhere */
+  .goddess-sec,
+  .mandala-sec,
+  .schedule-sec,
+  .rangoli-sec {
+    padding: 20px 10px;
+  }
+}
+
 /* gold divider util */
 .gd{display:flex;align-items:center;gap:12px;margin:16px 0;}
 .gl{flex:1;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
